@@ -1,7 +1,7 @@
 function SignIn() {
     return (
         <>
-            <div>Login page for auth from master branch.</div>
+            <div>Login page for auth from master branch...</div>
         </>
 
     )
