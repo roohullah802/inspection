@@ -2,9 +2,7 @@
 function SignIn() {
     return (
         <>
-            <div className="bg-red-600">Login page for auth</div>
-            <div className="bg-red-600">Login page for auth from bug-fix branch</div>
-            <div className="bg-red-600">Login page for auth from master.</div>
+            <div>Login page...</div>
         </>
 
     )
