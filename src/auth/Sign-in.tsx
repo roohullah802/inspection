@@ -7,18 +7,24 @@ import logoWhite from "../assets/logo-icon-white.svg";
 import logoColor from "../assets/logo-icon-color.svg";
 import leftSideLogo from "../assets/left-side-logo.svg";
 
+interface UserData {
+    email: string;
+    password: string;
+}
+
 export default function LoginPage() {
     const [showPassword, setShowPassword] = useState(false);
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [userData, setUserData] = useState<UserData>({
+        email: "",
+        password: ""
+    });
 
     const handleLogin: React.SubmitEventHandler = (e) => {
         e.preventDefault();
-        console.log({ username, password });
     };
 
     return (
-        <div className="flex min-h-screen w-full overflow-hidden bg-white">
+        <div className="flex h-screen w-full overflow-hidden bg-white">
             {/* LEFT PANEL */}
             <div className="relative hidden w-full max-w-[52%] flex-col justify-between overflow-hidden md:flex">
                 {/* Background image */}
@@ -63,7 +69,7 @@ export default function LoginPage() {
             </div>
 
             {/* RIGHT PANEL */}
-            <div className="flex w-full flex-1 flex-col justify-between bg-[#F8FAFE] px-8 py-8 md:px-16 lg:px-24">
+            <div className="flex flex-1 flex-col overflow-auto justify-between bg-[#F8FAFE] px-8 py-8 md:px-16 lg:px-24">
                 {/* Header logo */}
                 <div className="flex items-center gap-3">
                     <img src={logoColor} alt="Inspection System" className="ml-4 mb-3 h-22 w-66" />
@@ -78,18 +84,20 @@ export default function LoginPage() {
                     <div className="my-6 border-t border-dashed border-gray-200" />
 
                     <form onSubmit={handleLogin} className="space-y-5">
+
                         <div>
                             <label className="mb-1.5 block text-xs font-semibold tracking-wide text-gray-500">
-                                ENTER USERNAME
+                                ENTER EMAIL
                             </label>
                             <input
                                 type="text"
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
-                                placeholder="e.g. Email or Mobile No"
+                                value={userData.email}
+                                onChange={(e) => setUserData((prev) => ({ ...prev, email: e.target.value }))}
+                                placeholder="Example@gmail.com"
                                 className="w-full rounded-lg bg-[#EEF1F8] px-4 py-3 text-sm text-gray-700 placeholder:text-gray-400 outline-none ring-1 ring-transparent focus:ring-2 focus:ring-(--bright-teal)"
                             />
                         </div>
+
 
                         <div>
                             <label className="mb-1.5 block text-xs font-semibold tracking-wide text-gray-500">
@@ -98,8 +106,8 @@ export default function LoginPage() {
                             <div className="relative">
                                 <input
                                     type={showPassword ? "text" : "password"}
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
+                                    value={userData.password}
+                                    onChange={(e) => setUserData((prev) => ({ ...prev, password: e.target.value }))}
                                     placeholder="********"
                                     className="w-full rounded-lg bg-[#EEF1F8] px-4 py-3 pr-11 text-sm text-gray-700 placeholder:text-gray-400 outline-none ring-1 ring-transparent focus:ring-2 focus:ring-(--bright-teal)"
                                 />
@@ -122,15 +130,30 @@ export default function LoginPage() {
                         </button>
                     </form>
 
-                    <div className="mt-8 text-center">
-                        <p className="text-sm text-gray-500">Don't have an account?</p>
-                        <button
-                            type="button"
-                            className="mt-3 w-full rounded-lg bg-[#2D0D4D] py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#3d1568]"
-                        >
-                            Create an Account
-                        </button>
-                    </div>
+                    {/* {location.pathname === "/sign-up" ? (
+                        ""
+                    ) : (
+                        <div className="mt-8 text-center">
+                            <p className="text-sm text-gray-500">Don't have an account?</p>
+                            <button
+                                type="button"
+                                className="mt-3 w-full rounded-lg bg-[#2D0D4D] py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#3d1568]"
+                                onClick={() => {
+                                    navigation("/sign-up")
+                                    setUserData({
+                                        fullName: "",
+                                        cnic: "",
+                                        phoneNo: "",
+                                        designation: "",
+                                        password: "",
+                                        email: ""
+                                    })
+                                }}
+                            >
+                                Create an Account
+                            </button>
+                        </div>
+                    )} */}
                 </div>
 
                 <div />

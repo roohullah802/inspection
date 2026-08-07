@@ -1,5 +1,8 @@
 :root {
   --bright-teal: #14D3BB;
+  --linear-bottom: #ECF1FB;
+  --linear-top: #F8FAFD;
+  --title-color: red;
 
   @media (prefers-color-scheme: dark) {
     :root {
